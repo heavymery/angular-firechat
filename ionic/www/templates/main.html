@@ -1,0 +1,47 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content drag-content="sideMenuDraggable">
+    <ion-nav-bar class="bar-{{authData.provider}}">
+
+      <ion-nav-back-button></ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" expose-aside-when="large">
+    <ion-header-bar class="bar-dark">
+      <ion-spinner class="spinner-light" icon="dots" ng-hide="currentUser.name"></ion-spinner>
+
+      <img ng-src="{{currentUser.avatar}}" ng-show="currentUser.avatar">
+      <h1 class="title" ng-show="currentUser.name">{{currentUser.name}}</h1>
+
+      <button class="button button-icon icon ion-gear-a" nav-clear menu-close ui-sref="main.settings" ng-show="currentUser.name"></button>
+    </ion-header-bar>
+
+    <ion-content>
+      <ion-list>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="main.home">
+          <i class="icon ion-home"></i>Home
+        </ion-item>
+
+        <ion-item class="item-icon-left" disabled>
+          <i class="icon ion-person-stalker"></i>Friends
+        </ion-item>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="main.messages">
+          <i class="icon ion-email" ng-class="{ true: 'ion-email-unread' }"></i>Messages
+        </ion-item>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ng-click="signOut()">
+          <i class="icon ion-log-out"></i>Sign out
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,73 @@
+<ion-view view-title="Messages">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon ion-compose" ng-click="newMessageModal.show()"></button>
+  </ion-nav-buttons>
+
+  <ion-content scrollbar-x="false" scrollbar-y="false">
+    <ion-list class="room-list">
+
+      <ion-item class="item-icon-left item-icon-right" ng-repeat="room in rooms" ui-sref="main.room({roomId: room.$id})">
+        <i class="icon ion-chatboxes"></i>
+
+        <ion-spinner icon="dots" ng-hide="room.subject"></ion-spinner>
+
+        <h2 ng-show="room.subject">{{room.subject}}</h2>
+        <p ng-show="room.subject">{{(room.members | keys).length}} members / {{room.timestamp | date:'medium'}}</p>
+
+        <i class="icon ion-ios-arrow-forward"></i>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+<script id="new-message-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-dark">
+      <button class="button" ng-click="cancelSendMessage()">Close</button>
+
+      <h1 class="title">New Message</h1>
+
+      <button class="button" ng-click="sendMessage()" ng-disabled="!(newMessage.to.length > 0 && newMessage.subject && newMessage.content)">Send</button>
+    </ion-header-bar>
+
+    <ion-content overflow-scroll="true" scroll="false">
+      <ion-item class="item-input item-button-right">
+        <span class="new-message-selected-user" ng-repeat="user in newMessage.to"><img ng-src="{{user.avatar}}"/>{{user.name}}</span>
+
+        <input type="text" placeholder="{{newMessage.to.length > 0 ? '' :  'To'}}">
+
+        <button class="button button-icon icon ion-person-add" ng-click="usersModal.show()"></button>
+      </ion-item>
+
+      <ion-item class="item-input">
+        <input type="text" placeholder="Subject" ng-model="newMessage.subject">
+      </ion-item>
+
+      <textarea class="new-message-textarea" ng-model="newMessage.content"></textarea>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="users-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-dark">
+      <button class="button" ng-click="cancelSelectUsers()">Cancel</button>
+
+      <h1 class="title">Users</h1>
+
+      <button class="button" ng-click="doneSeletUsers()">Done</button>
+    </ion-header-bar>
+
+    <ion-content overflow-scroll="true">
+      <ion-list>
+
+        <ion-checkbox class="item-checkbox-right" ng-repeat="user in users" ng-model="user.selected" ng-hide="user.$id === currentUser.$id">
+          <img ng-src="{{user.avatar}}">
+          <h2>{{user.name}}</h2>
+        </ion-checkbox>
+
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</script>

@@ -1,0 +1,223 @@
+/* Empty. Add your own CSS if you like */
+
+/* Workaround for iPhone 6 Plus box-shadow bug */
+.menu-content {
+  -webkit-border-radius: .1px;
+}
+
+.entry-box {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.home-guide-slide {
+  height: 100%;
+}
+
+.home-guide-slide .box {
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+}
+
+.bar-facebook .bar-header {
+  border-color: #0c63ee;
+  background-color: #387ef5;
+  background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%);
+  color: #fff;
+}
+
+.bar-facebook .bar-header .button {
+  color: #fff;
+}
+
+.bar-twitter, .bar-twitter .bar-header {
+  border-color: #0a9ec7;
+  background-color: #11c1f3;
+  background-image: linear-gradient(0deg, #0a9ec7, #0a9ec7 50%, transparent 50%);
+  color: #fff;
+}
+
+.bar-twitter .bar-header .button {
+  color: #fff;
+}
+
+.bar-google .bar-header {
+  border-color: #e42012;
+  background-color: #ef473a;
+  background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);
+  color: #fff;
+}
+
+.bar-google .bar-header .button {
+  color: #fff;
+}
+
+.bar-github .bar-header {
+  border-color: #b2b2b2;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
+  color: #444;
+}
+
+.bar-github .bar-header .button {
+  color: #444;
+}
+
+.menu .bar-header {
+/*   font-size: 16px; */
+/*   line-height: 34px; */
+}
+
+.menu-left .bar-header > img {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin: auto 8px auto 6px;
+  border-radius: 50%;
+}
+
+.menu-left .bar-header .spinner {
+  margin: 2px auto 0;
+}
+
+.icon.ion-log-out {
+  font-size: 24px;
+}
+
+.item[disabled] {
+  opacity: .5;
+}
+
+.item .spinner {
+  display: block;
+  margin-top: 8px;
+}
+
+.item-checkbox .item-content > img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.item-checkbox .item-content > img ~ h2 {
+  display: inline-block;
+  line-height: 40px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.item-input .button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.room-list .item-content {
+  height: 77px;
+}
+
+.new-message-selected-user {
+  display: inline-block;
+  padding: 4px;
+  margin-right: 4px;
+  
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #666;
+}
+
+.new-message-selected-user > img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.new-message-textarea {
+  position: absolute;
+  top: 93px;
+  bottom: 0;
+  width: 100%;
+/*   height: 100%; */
+  padding: 16px;
+  line-height: 1.2;
+  background: #red;
+}
+
+.message-content {
+  white-space: pre-wrap !important;
+}
+
+.reply-textarea-wrapper {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.reply-textarea {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  padding: 9px 0;
+  line-height: 1.2;
+  box-sizing: border-box;
+  background: none;
+}
+
+.room-menu-popover {
+  height: 158px !important;
+  border-radius: 4px !important;
+}
+
+.room-menu-popover .scroll-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 4px !important;
+}
+
+.message-list .list {
+  padding-bottom: 44px;
+}
+
+.message-list .item {
+  border: none;
+}
+
+.message-list .item p {
+  background-color: #eee;
+  display: inline-block;
+  width: auto;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+.message-list .item.current-user-message p {
+  background-color: #444;
+  color: #fff;
+}
+
+.message-list .item .item-note {
+  position: relative;
+  display: block !important;
+  float: none;
+  padding: 4px 0;
+  text-align: right;
+  border-bottom: 1px solid #eee;
+}
+
+.popup-body > input[type='text'] {
+    padding-left: 8px;
+    padding-right: 8px;
+}

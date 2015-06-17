@@ -1,0 +1,23 @@
+<ion-view view-title="Settings">
+  <ion-content scrollbar-x="false" scrollbar-y="false">
+    <ion-list>
+      
+      <ion-item class="item-divider">Account</ion-item>
+
+      <ion-item class="">
+        Name
+        <span class="item-note">
+          {{currentUser.name}}
+        </span>
+      </ion-item>
+
+      <ion-item class="">
+        ID
+        <span class="item-note">
+          {{currentUser.$id}}
+        </span>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

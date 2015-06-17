@@ -1,0 +1,79 @@
+<ion-view>
+  <ion-nav-title>
+    {{room.subject}}
+  </ion-nav-title>
+
+  <ion-nav-buttons side="secondary">
+    <button class="button back-button buttons button-clear header-item" ng-click="menuPopover.show($event)">
+      <i class="icon ion-ios-more"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="" scrollbar-x="false" scrollbar-y="false">
+    <ion-list id="messageList" class="message-list">
+
+      <ion-item class="item-avatar" ng-repeat="message in messages" ng-class="{'current-user-message': message.from === currentUser.$id}">
+        <img ng-src="{{members[message.from].avatar}}">
+        <h2>{{members[message.from].name}}</h2>
+
+        <p class="message-content">{{message.content}}</p>
+
+        <span class="item-note">
+          {{message.timestamp | date:'medium'}}
+        </span>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+  <div id="replyFooter" class="bar bar-footer bar-dark">
+    <label class="item-input-wrapper reply-textarea-wrapper">
+      <textarea id="replyTextarea" class="reply-textarea" ng-keyup="updateReplayTextArea()" ng-keydown="updateReplayTextArea()" ng-model="replyMessage.content"></textarea>
+    </label>
+
+    <button class="button" ng-click="sendReplyMessage()">Send</button>
+  </div>
+</ion-view>
+
+<script id="menu-popover.html" type="text/ng-template">
+  <ion-popover-view class="room-menu-popover">
+    <ion-content scroll="false">
+      <ion-list>
+        <ion-item class="item-icon-left" ng-click="editRoom()">
+          <i class="icon ion-edit"></i> Edit Room
+        </ion-item>
+
+        <ion-item class="item-icon-left" ng-click="invitePeople()">
+          <i class="icon ion-person-add"></i> Invite People
+        </ion-item>
+
+        <ion-item class="item-icon-left" ng-click="exit()">
+          <i class="icon ion-android-exit"></i> Exit
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="invite-people-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-dark">
+      <button class="button" ng-click="cancelInvitePeople()">Cancel</button>
+
+      <h1 class="title">Invite People</h1>
+
+      <button class="button" ng-click="doneInvitePeople()">Done</button>
+    </ion-header-bar>
+
+    <ion-content overflow-scroll="true">
+      <ion-list>
+        
+        <ion-checkbox class="item-checkbox-right" ng-repeat="user in users" ng-model="user.selected" ng-hide="user.$id === currentUser.$id || room.members[user.$id]">
+          <img ng-src="{{user.avatar}}">
+          <h2>{{user.name}}</h2>
+        </ion-checkbox>
+
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</script>
