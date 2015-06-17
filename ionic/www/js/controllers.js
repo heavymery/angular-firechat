@@ -216,6 +216,12 @@ angular.module('angularFirechat.controllers', [])
     }, 300);
 
     $ionicLoading.hide();
+
+    $scope.messages.$watch(function(event) {
+      if(Math.abs($ionicScrollDelegate.getScrollView().getScrollMax().top - $ionicScrollDelegate.getScrollPosition().top) < 10) {
+        $ionicScrollDelegate.scrollBottom(true);
+      }
+    });
   });
 
   //--------------------------------------
