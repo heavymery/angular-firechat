@@ -133,6 +133,18 @@ angular.module('angularFirechat', ['ionic', 'angularFirechat.controllers', 'angu
 
   $rootScope.signOut = function() {
     Auth.$unauth();
+    isAuthCompleted = false;
+    $rootScope.authData = null;
+
+    $rootScope.currentUser.$destroy();
+    $rootScope.currentUser = null;
+
+    $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+      disableBack: true,
+      historyRoot: true
+    });
+
     $state.go('entry');
   };
 
@@ -208,7 +220,7 @@ angular.module('angularFirechat', ['ionic', 'angularFirechat.controllers', 'angu
     $ionicSideMenuDelegate.toggleLeft();
   };
 
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     // console.debug(toState);
 
     if(toState.name === 'entry') {
@@ -226,6 +238,10 @@ angular.module('angularFirechat', ['ionic', 'angularFirechat.controllers', 'angu
     } else {
       $rootScope.sideMenuDraggable = true;
     }
+  });
+
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    // console.debug($ionicHistory.viewHistory());
   });
 
 });

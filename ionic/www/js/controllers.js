@@ -24,22 +24,14 @@ angular.module('angularFirechat.controllers', [])
 
 .controller('MessagesCtrl', function($rootScope, $scope, $filter, $window, $timeout, $ionicModal, $ionicLoading, User, Users, Room, Rooms, Messages) {
 
-  $scope.rooms = {};
+  $scope.$watch('currentUser', function(newValue, oldValue) {
+    $scope.rooms = {};
 
-  $scope.currentUser.$loaded().then(function(data) {
-    // Initialize room list
-    angular.forEach(data.rooms, function(value, key) {
-      if(value) {
-        if(!$scope.rooms[key]) {
-          $scope.rooms[key] = Room(key);
-        }
-      }
-    });
+    if(!newValue) return;
 
-    // Update room list
-    $scope.currentUser.$watch(function(event) {
-      // Added
-      angular.forEach($scope.currentUser.rooms, function(value, key) {
+    $scope.currentUser.$loaded().then(function(data) {
+      // Initialize room list
+      angular.forEach(data.rooms, function(value, key) {
         if(value) {
           if(!$scope.rooms[key]) {
             $scope.rooms[key] = Room(key);
@@ -47,12 +39,24 @@ angular.module('angularFirechat.controllers', [])
         }
       });
 
-      // Removed
-      angular.forEach($scope.rooms, function(value, key) {
-        if(!$scope.currentUser.rooms || !$scope.currentUser.rooms[key]) {
-          $scope.rooms[key].$destroy();
-          delete $scope.rooms[key];
-        }
+      // Update room list
+      $scope.currentUser.$watch(function(event) {
+        // Added
+        angular.forEach($scope.currentUser.rooms, function(value, key) {
+          if(value) {
+            if(!$scope.rooms[key]) {
+              $scope.rooms[key] = Room(key);
+            }
+          }
+        });
+
+        // Removed
+        angular.forEach($scope.rooms, function(value, key) {
+          if(!$scope.currentUser.rooms || !$scope.currentUser.rooms[key]) {
+            $scope.rooms[key].$destroy();
+            delete $scope.rooms[key];
+          }
+        });
       });
     });
   });
